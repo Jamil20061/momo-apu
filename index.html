@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Momo Apu ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at center, #42153f, #100014 75%);
+      color: white;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .moon {
+      font-size: 65px;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px white);
+    }
+
+    h1 {
+      margin-top: 10px;
+      font-size: clamp(35px, 9vw, 65px);
+      background: linear-gradient(
+        90deg,
+        #ff8bd1,
+        white,
+        #ff4fa3,
+        white
+      );
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+    }
+
+    .love {
+      margin-top: 12px;
+      font-size: clamp(26px, 7vw, 45px);
+      font-weight: bold;
+      opacity: 0;
+      animation: reveal 1.5s ease forwards;
+      animation-delay: 1s;
+    }
+
+    .message {
+      margin-top: 10px;
+      font-size: 17px;
+      opacity: 0;
+      animation: reveal 1.5s ease forwards;
+      animation-delay: 2s;
+    }
+
+    /* Buttons */
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      position: relative;
+      min-height: 55px;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 13px 28px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    #accept {
+      background: linear-gradient(135deg, #ff4f9a, #ff79bb);
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 80, 160, .5);
+    }
+
+    #accept:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 35px rgba(255, 80, 160, .8);
+    }
+
+    #reject {
+      background: rgba(255,255,255,.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,.4);
+      position: relative;
+    }
+
+    #reject:hover {
+      background: rgba(255,255,255,.2);
+    }
+
+    /* Thank you */
+
+    #thankYou {
+      display: none;
+      margin-top: 25px;
+      font-size: clamp(25px, 7vw, 42px);
+      font-weight: bold;
+      color: #ffb9df;
+      text-shadow: 0 0 20px #ff4fa3;
+      animation: thankYou .8s ease forwards;
+    }
+
+    /* Floating hearts */
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      pointer-events: none;
+      animation: rise linear forwards;
+      z-index: 2;
+    }
+
+    /* Rose */
+
+    .rose {
+      position: absolute;
+      bottom: -80px;
+      pointer-events: none;
+      font-size: 35px;
+      z-index: 20;
+      animation: roseBurst 3s ease-out forwards;
+    }
+
+    /* Sparkles */
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px white;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    /* Animations */
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: 0%;
+      }
+
+      100% {
+        background-position: 300%;
+      }
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(.5) rotate(0deg);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      100% {
+        transform:
+          translateY(-110vh)
+          scale(1.4)
+          rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes twinkle {
+      from {
+        opacity: .2;
+        transform: scale(.5);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    @keyframes thankYou {
+      0% {
+        opacity: 0;
+        transform: scale(.3);
+      }
+
+      70% {
+        transform: scale(1.15);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes roseBurst {
+      0% {
+        transform:
+          translate(0, 0)
+          scale(.2)
+          rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform:
+          translate(
+            var(--x),
+            var(--y)
+          )
+          scale(1.5)
+          rotate(var(--rotate));
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="moon">🌙</div>
+
+    <h1>Momo Apu</h1>
+
+    <div class="love">
+      I Love You ❤️
+    </div>
+
+    <div class="message">
+      You are truly special to me ✨
+    </div>
+
+    <div class="buttons">
+
+      <button id="accept" onclick="acceptLove()">
+        Accept ❤️
+      </button>
+
+      <button id="reject">
+        Rejected 😜
+      </button>
+
+    </div>
+
+    <div id="thankYou">
+      Aww, Thank you🥰🌹
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* -------------------------
+       FLOATING HEARTS
+    ------------------------- */
+
+    function createHeart() {
+
+      const heart = document.createElement("div");
+
+      heart.className = "heart";
+
+      const hearts = [
+        "❤️",
+        "💖",
+        "💕",
+        "💗",
+        "💓",
+        "💘",
+        "✨"
+      ];
+
+      heart.innerHTML =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      heart.style.fontSize =
+        (15 + Math.random() * 25) + "px";
+
+      heart.style.animationDuration =
+        (5 + Math.random() * 5) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 400);
+
+
+    /* -------------------------
+       BACKGROUND SPARKLES
+    ------------------------- */
+
+    for (let i = 0; i < 80; i++) {
+
+      const sparkle =
+        document.createElement("div");
+
+      sparkle.className = "sparkle";
+
+      sparkle.style.left =
+        Math.random() * 100 + "vw";
+
+      sparkle.style.top =
+        Math.random() * 100 + "vh";
+
+      sparkle.style.animationDelay =
+        Math.random() * 2 + "s";
+
+      document.body.appendChild(sparkle);
+    }
+
+
+    /* -------------------------
+       ACCEPT BUTTON
+    ------------------------- */
+
+    function acceptLove() {
+
+      document.getElementById("thankYou").style.display =
+        "block";
+
+      // Hide buttons after accepting
+      document.querySelector(".buttons").style.display =
+        "none";
+
+      // Rose explosion
+      for (let i = 0; i < 80; i++) {
+
+        setTimeout(() => {
+
+          const rose =
+            document.createElement("div");
+
+          rose.className = "rose";
+
+          rose.innerHTML = "🌹";
+
+          // Start position
+          rose.style.left =
+            (45 + Math.random() * 10) + "vw";
+
+          // Random direction
+          const x =
+            (Math.random() - 0.5) * 90 + "vw";
+
+          const y =
+            -(Math.random() * 100 + 40) + "vh";
+
+          rose.style.setProperty("--x", x);
+          rose.style.setProperty("--y", y);
+
+          rose.style.setProperty(
+            "--rotate",
+            (Math.random() * 720 - 360) + "deg"
+          );
+
+          rose.style.fontSize =
+            (25 + Math.random() * 30) + "px";
+
+          document.body.appendChild(rose);
+
+          setTimeout(() => {
+            rose.remove();
+          }, 3000);
+
+        }, i * 35);
+      }
+
+      // Extra hearts
+      for (let i = 0; i < 30; i++) {
+        setTimeout(createHeart, i * 70);
+      }
+    }
+
+
+    /* -------------------------
+       REJECT BUTTON
+       RUNS AWAY 😂
+    ------------------------- */
+
+    const reject =
+      document.getElementById("reject");
+
+    function moveReject() {
+
+      const padding = 20;
+
+      const maxX =
+        window.innerWidth -
+        reject.offsetWidth -
+        padding;
+
+      const maxY =
+        window.innerHeight -
+        reject.offsetHeight -
+        padding;
+
+      const randomX =
+        Math.max(
+          padding,
+          Math.random() * maxX
+        );
+
+      const randomY =
+        Math.max(
+          padding,
+          Math.random() * maxY
+        );
+
+      reject.style.position = "fixed";
+
+      reject.style.left =
+        randomX + "px";
+
+      reject.style.top =
+        randomY + "px";
+
+      reject.style.zIndex = "100";
+    }
+
+
+    // Desktop
+    reject.addEventListener(
+      "mouseenter",
+      moveReject
+    );
+
+
+    // Mobile
+    reject.addEventListener(
+      "touchstart",
+      function(e) {
+        e.preventDefault();
+        moveReject();
+      }
+    );
+
+
+    // Extra protection if somehow clicked
+    reject.addEventListener(
+      "click",
+      function(e) {
+        e.preventDefault();
+        moveReject();
+      }
+    );
+
+  </script>
+
+</body>
+</html>
